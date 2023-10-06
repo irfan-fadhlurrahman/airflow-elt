@@ -11,5 +11,11 @@ create-file:
 create-docker-network:
 	docker network create ${DOCKER_NETWORK}
 
-build:
+docker-build:
 	docker compose --env-file .env -f compose-dev.yml build
+
+
+git-pull:
+	git add .
+	git commit -m "to update the latest repo"
+	git pull origin main
