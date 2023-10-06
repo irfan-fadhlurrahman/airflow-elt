@@ -1,6 +1,7 @@
-apache-airflow-client==2.7.1
+apache-airflow-client==2.7.0
 pandas==1.5.3
 sqlalchemy==1.4.49
+psycopg2-binary<=2.9.9
 selenium==4.12.0
 beautifulsoup4==4.12.2
 pytest==7.4.2

@@ -11,9 +11,36 @@ create-file:
 create-docker-network:
 	docker network create ${DOCKER_NETWORK}
 
-docker-build:
+build:
 	docker compose --env-file .env -f compose-dev.yml build
 
+up:
+	docker compose --env-file .env -f compose-dev.yml up
+
+up-with-rebuild:
+	docker compose --env-file .env -f compose-dev.yml up --build
+
+down:
+	docker compose --env-file .env -f compose-dev.yml down
+
+down-remove-orphans:
+	docker compose --env-file .env -f compose-dev.yml down --remove-orphans
+
+bash:
+	docker compose --env-file .env -f compose-dev.yml exec airflow-webserver bash
+
+attach:
+	tmux a -t airflow-metabase
+
+kill:
+	tmux kill-session -t airflow-metabase
+
+autostart:
+	chmod +x ./autostart.sh && . ./autostart.sh
+
+restart: kill autostart
+
+rebuild: down-remove-orphans kill build autostart attach
 
 git-pull:
 	git add .
