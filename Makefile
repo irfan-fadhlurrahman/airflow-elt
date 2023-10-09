@@ -50,3 +50,6 @@ git-pull:
 	git add .
 	git commit -m "to update the latest repo"
 	git pull origin main
+
+git-push:
+	git push origin main
