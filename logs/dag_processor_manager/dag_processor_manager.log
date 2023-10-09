@@ -57,3 +57,230 @@
 [2023-10-06T01:04:28.846+0000] {manager.py:760} INFO - Searching for files in /opt/airflow/dags
 [2023-10-06T01:04:28.847+0000] {manager.py:763} INFO - There are 0 files in /opt/airflow/dags
 [2023-10-06T01:06:40.694+0000] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2023-10-09T03:02:29.533+0000] {manager.py:488} INFO - Processing files using up to 2 processes at a time 
+[2023-10-09T03:02:29.541+0000] {manager.py:489} INFO - Process each file at most once every 30 seconds
+[2023-10-09T03:02:29.542+0000] {manager.py:490} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2023-10-09T03:02:29.542+0000] {manager.py:760} INFO - Searching for files in /opt/airflow/dags
+[2023-10-09T03:02:29.547+0000] {manager.py:763} INFO - There are 0 files in /opt/airflow/dags
+[2023-10-09T03:04:09.524+0000] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2023-10-09T03:04:52.641+0000] {manager.py:488} INFO - Processing files using up to 2 processes at a time 
+[2023-10-09T03:04:52.646+0000] {manager.py:489} INFO - Process each file at most once every 30 seconds
+[2023-10-09T03:04:52.646+0000] {manager.py:490} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2023-10-09T03:04:52.647+0000] {manager.py:760} INFO - Searching for files in /opt/airflow/dags
+[2023-10-09T03:04:52.649+0000] {manager.py:763} INFO - There are 0 files in /opt/airflow/dags
+[2023-10-09T03:09:38.417+0000] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2023-10-09T03:10:26.363+0000] {manager.py:488} INFO - Processing files using up to 2 processes at a time 
+[2023-10-09T03:10:26.374+0000] {manager.py:489} INFO - Process each file at most once every 30 seconds
+[2023-10-09T03:10:26.375+0000] {manager.py:490} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2023-10-09T03:10:26.375+0000] {manager.py:760} INFO - Searching for files in /opt/airflow/dags
+[2023-10-09T03:10:26.377+0000] {manager.py:763} INFO - There are 1 files in /opt/airflow/dags
+[2023-10-09T03:10:26.821+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/example_taskflow.py    174  0.12s             0           0
+================================================================================
+[2023-10-09T03:10:56.968+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.52s           2023-10-09T03:10:27
+================================================================================
+[2023-10-09T03:11:27.022+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.58s           2023-10-09T03:10:57
+================================================================================
+[2023-10-09T03:11:57.122+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.17s           2023-10-09T03:11:28
+================================================================================
+[2023-10-09T03:12:27.416+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.68s           2023-10-09T03:11:58
+================================================================================
+[2023-10-09T03:12:58.177+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.15s           2023-10-09T03:12:29
+================================================================================
+[2023-10-09T03:13:28.435+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.17s           2023-10-09T03:12:59
+================================================================================
+[2023-10-09T03:13:58.706+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.07s           2023-10-09T03:13:51
+================================================================================
+[2023-10-09T03:14:28.859+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.16s           2023-10-09T03:14:21
+================================================================================
+[2023-10-09T03:14:59.067+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.18s           2023-10-09T03:14:52
+================================================================================
+[2023-10-09T03:15:26.478+0000] {manager.py:760} INFO - Searching for files in /opt/airflow/dags
+[2023-10-09T03:15:26.479+0000] {manager.py:763} INFO - There are 1 files in /opt/airflow/dags
+[2023-10-09T03:15:29.340+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.15s           2023-10-09T03:15:22
+================================================================================
+[2023-10-09T03:15:59.587+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.15s           2023-10-09T03:15:52
+================================================================================
+[2023-10-09T03:16:29.824+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.14s           2023-10-09T03:16:22
+================================================================================
+[2023-10-09T03:17:00.036+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.17s           2023-10-09T03:16:53
+================================================================================
+[2023-10-09T03:17:17.613+0000] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2023-10-09T03:23:17.395+0000] {manager.py:488} INFO - Processing files using up to 2 processes at a time 
+[2023-10-09T03:23:17.400+0000] {manager.py:489} INFO - Process each file at most once every 30 seconds
+[2023-10-09T03:23:17.400+0000] {manager.py:490} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2023-10-09T03:23:17.401+0000] {manager.py:760} INFO - Searching for files in /opt/airflow/dags
+[2023-10-09T03:23:17.404+0000] {manager.py:763} INFO - There are 1 files in /opt/airflow/dags
+[2023-10-09T03:23:17.887+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/example_taskflow.py    173  0.14s             0           0
+================================================================================
+[2023-10-09T03:23:48.003+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.60s           2023-10-09T03:23:18
+================================================================================
+[2023-10-09T03:24:18.607+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.34s           2023-10-09T03:23:48
+================================================================================
+[2023-10-09T03:24:49.021+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.29s           2023-10-09T03:24:19
+================================================================================
+[2023-10-09T03:25:19.404+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.18s           2023-10-09T03:24:49
+================================================================================
+[2023-10-09T03:25:49.740+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  1.41s           2023-10-09T03:25:21
+================================================================================
+[2023-10-09T03:26:20.321+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.16s           2023-10-09T03:25:51
+================================================================================
+[2023-10-09T03:26:50.596+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.21s           2023-10-09T03:26:21
+================================================================================
+[2023-10-09T03:27:20.752+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.22s           2023-10-09T03:26:51
+================================================================================
+[2023-10-09T03:27:51.068+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.20s           2023-10-09T03:27:22
+================================================================================
+[2023-10-09T03:28:17.541+0000] {manager.py:760} INFO - Searching for files in /opt/airflow/dags
+[2023-10-09T03:28:17.542+0000] {manager.py:763} INFO - There are 1 files in /opt/airflow/dags
+[2023-10-09T03:28:21.407+0000] {manager.py:888} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/example_taskflow.py                           1           0  0.21s           2023-10-09T03:27:52
+================================================================================

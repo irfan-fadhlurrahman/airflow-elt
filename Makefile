@@ -14,10 +14,10 @@ create-docker-network:
 build:
 	docker compose --env-file .env -f compose-dev.yml build
 
-up:
+up: down
 	docker compose --env-file .env -f compose-dev.yml up
 
-up-with-rebuild:
+up-with-rebuild: down
 	docker compose --env-file .env -f compose-dev.yml up --build
 
 down:
@@ -41,6 +41,10 @@ autostart:
 restart: kill autostart
 
 rebuild: down-remove-orphans kill build autostart attach
+
+prune:
+	docker builder prune -a
+	docker image prune -a
 
 git-pull:
 	git add .

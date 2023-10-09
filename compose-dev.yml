@@ -19,71 +19,12 @@ x-airflow-common:
     - ./tests:/opt/airflow/tests
     - ./src:/opt/airflow/src
     - ./utils:/opt/airflow/utils
-  user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
+  user: "${AIRFLOW_UID}:${AIRFLOW_GID}"
   depends_on:
     postgres:
       condition: service_healthy
 
 services:
-  dashboard:
-      container_name: dashboard
-      image: metabase/metabase
-      restart: always
-      volumes:
-        - ./containers/metabase/metabase-data:/metabase-data
-      environment:
-        MB_DB_TYPE: ${MB_DB_TYPE}
-        MB_DB_DBNAME: ${MB_DB_DBNAME}
-        MB_DB_PORT: ${MB_DB_PORT}
-        MB_DB_USER: ${MB_DB_USER}
-        MB_DB_PASS: ${MB_DB_PASS}
-        MB_DB_HOST: ${MB_DB_HOST}
-      ports:
-        - "3000:3000"
-      networks:
-        - my-network
-      depends_on: 
-        - metabase-db
-      links:
-        - metabase-db
-      
-  metabase-db:
-    container_name: metabase-db
-    image: postgres:13
-    restart: always
-    volumes:
-        - "./containers/metabase/pgdata:/var/lib/postgresql/data:rw"
-    environment:
-      POSTGRES_USER: ${MB_DB_USER}
-      POSTGRES_PASSWORD: ${MB_DB_PASS}
-      POSTGRES_DB: ${MB_DB_DBNAME}
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${MB_DB_USER}" ]
-      interval: 5s
-      retries: 5
-    ports:
-      - "5433:5433"
-    networks:
-      - my-network
-    
-
-  postgres:
-    container_name: postgres
-    image: postgres:13
-    volumes:
-        - "./containers/airflow/pgdata:/var/lib/postgresql/data:rw"
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${POSTGRES_USER}" ]
-      interval: 5s
-      retries: 5
-    restart: always
-    ports:
-      - "5432:5432"
-  
   airflow-webserver:
     <<: *airflow-common
     container_name: webserver
@@ -102,6 +43,9 @@ services:
       timeout: 10s
       retries: 5
     restart: always
+    mem_limit: 4gb
+    cpu_count: 2
+    cpus: 0.7
   
   airflow-scheduler:
     <<: *airflow-common
@@ -117,10 +61,17 @@ services:
       timeout: 10s
       retries: 5
     restart: always
+    mem_limit: 4gb
+    cpu_count: 2
+    cpus: 0.7
 
   airflow-init:
     <<: *airflow-common
+    container_name: airflow-init
     command: version
+    mem_limit: 2gb
+    cpu_count: 2
+    cpus: 0.7
     environment:
       <<: *airflow-common-env
       _AIRFLOW_DB_UPGRADE: 'true'
@@ -128,8 +79,57 @@ services:
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD}
 
+  postgres:
+    container_name: postgres
+    image: postgres:13
+    volumes:
+        - "./containers/airflow/pgdata:/var/lib/postgresql/data:rw"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "${POSTGRES_USER}" ]
+      interval: 5s
+      retries: 5
+    restart: always
+    mem_limit: 2gb
+    cpu_count: 2
+    cpus: 0.7
+    ports:
+      - "5432:5432"
 
+  dashboard:
+    container_name: dashboard
+    image: metabase/metabase:v0.47.3
+    restart: always
+    mem_limit: 4gb
+    cpu_count: 2
+    cpus: 0.7
+    volumes:
+      - ./containers/metabase/metabase-data:/metabase-data
+    ports:
+      - "3000:3000"
+
+  minio:
+    container_name: minio-data-lake
+    image: minio/minio:RELEASE.2023-10-07T15-07-38Z
+    restart: always
+    mem_limit: 1gb
+    cpu_count: 2
+    cpus: 0.7
+    ports:
+      - "4144:4144"
+      - "4145:4145"
+    volumes:
+      - ./containers/minio/storage:/data
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    command: server --address ":4144" --console-address ":4145" /data
+    
 networks:
-  my-network:
+  default:
+    name: ${DOCKER_NETWORK}
     external: True
 
