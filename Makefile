@@ -2,7 +2,7 @@ include .env
 
 create-file:
 	mkdir -p ./.github
-	mkdir -p ./dags ./logs ./plugins ./tests ./src ./utils
+	mkdir -p ./dags ./logs ./plugins ./tests ./src ./utils ./database
 	mkdir -p ./containers/airflow ./containers/minio/storage ./containers/metabase/metabase-data
 	touch .env .gitignore LICENSE.md README.md Makefile compose-dev.yml autostart.sh
 	touch ./containers/airflow/Dockerfile

@@ -6,6 +6,6 @@ ENV PYTHONPATH=/opt/airflow
 ADD /requirements.txt requirements.txt
 
 RUN apt-get update && \
-    apt-get install -y wget unzip; \
+    apt-get install -y wget unzip zip; \
     pip install -U pip; \
     pip install --no-cache-dir -r requirements.txt
