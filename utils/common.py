@@ -1,12 +1,15 @@
 import os
 import pytz
+import traceback
 import pandas as pd
 
 from minio import api
 from datetime import datetime
 from dotenv import load_dotenv
+from contextlib import contextmanager
 
 from utils.file_handler import MinioCredentials, MinioFileHandler
+from utils.db_connection import DuckDBConnection
 
 load_dotenv()
 
@@ -40,4 +43,9 @@ def write_dataframe_to_minio(df: pd.DataFrame, object_path: str):
         "use_ssl": False
     })
     print(f"Save to Minio Object Storage at {object_path}")
-    
+
+def query_using_duckdb(db_path: str, query: str) -> pd.DataFrame:
+    return DuckDBConnection(
+        db_path=db_path, 
+        credentials=MINIO_CREDENTIALS
+    ).execute(query)    
