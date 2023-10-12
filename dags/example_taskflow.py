@@ -5,25 +5,40 @@ from typing import Dict
 import requests
 from airflow.decorators import dag, task
 
-API = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true"
+import json
+import pandas as pd
+from typing import Dict, List
+from utils.common import (
+    get_indonesia_time, create_minio_bucket,
+    write_dataframe_to_minio
+)
 
+COMMON_DAG_ARGS = {
+    "start_date": datetime.now() - timedelta(days=1),
+    "catchup": False
+}
 
-@dag(schedule="* * * * *", start_date=datetime.now()- timedelta(days=1), catchup=False)
-def taskflow():
-    @task(task_id="extract", retries=2)
-    def extract_bitcoin_price() -> Dict[str, float]:
-        return requests.get(API).json()["bitcoin"]
-
+@dag(schedule="*/15 * * * *", **COMMON_DAG_ARGS)
+def klhk_air_quality():
+    API = "https://ispu.menlhk.go.id/apimobile/v1/getStations"
+    BUCKET_NAME = 'web-scraping'
+    PREFIX_PATH = f's3://{BUCKET_NAME}/air_quality'
+    CURRENT_DATE = get_indonesia_time().strftime('%Y%m%d_%H%M')
+    
+    create_minio_bucket(BUCKET_NAME)
+    
+    @task(retries=2)
+    def extract() -> List[Dict]:
+        return requests.get(API).json()['rows']
+        
     @task(multiple_outputs=True)
-    def process_data(response: Dict[str, float]) -> Dict[str, float]:
-        logging.info(response)
-        return {"usd": response["usd"], "change": response["usd_24h_change"]}
+    def load(results: List[Dict]):
+        """Ingest to Minio Object Storage as parquet file."""
+        write_dataframe_to_minio(
+            df=pd.DataFrame(results),
+            object_path=f"{PREFIX_PATH}/{CURRENT_DATE}.parquet"
+        )
+    
+    load(extract())
 
-    @task
-    def store_data(data: Dict[str, float]):
-        logging.info(f"Store: {data['usd']} with change {data['change']}")
-
-    store_data(process_data(extract_bitcoin_price()))
-
-
-taskflow()
+klhk_air_quality()
