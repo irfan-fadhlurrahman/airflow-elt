@@ -1,6 +1,7 @@
 # airflow-elt
 To demonstrate simple ELT project using Airflow, Minio, DuckDB, and Metabase.
 
-NOTES:
-1. To add data pipeline script
-2. Add TMUX_SESSION_NAME at .env and Makefile
+TASK:
+1. Write imple documentation in README.md
+2. Create duckdb connection function
+3. Add transform at taskflow for klhk_air_quality
