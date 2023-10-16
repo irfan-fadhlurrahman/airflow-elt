@@ -25,11 +25,6 @@ def get_indonesia_time() -> datetime:
     """To ensure the datetime is UTC+07:00 and without tzinfo"""
     return datetime.now(tz=pytz.timezone('Asia/Jakarta')).replace(tzinfo=None)
 
-def get_minio_client() -> api.Minio:
-    return MinioFileHandler(credentials=MINIO_CREDENTIALS).get_client()
-
-def create_minio_bucket(name: str):
-    return MinioFileHandler(credentials=MINIO_CREDENTIALS).create_bucket(name)
 
 def write_dataframe_to_minio(df: pd.DataFrame, object_path: str):
     if not object_path.endswith('.parquet'):

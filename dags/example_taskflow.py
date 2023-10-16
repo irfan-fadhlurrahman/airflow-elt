@@ -44,7 +44,10 @@ def klhk_air_quality():
         query_using_duckdb(
             db_path=DB_PATH,
             query=f"""
-                CREATE OR REPLACE TABLE klhk_air_quality AS FROM read_parquet ('{PREFIX_PATH}/20231012_*.parquet');
+                CREATE OR REPLACE TABLE klhk_air_quality AS 
+                FROM read_parquet (
+                    '{PREFIX_PATH}/20231012_*.parquet'
+                );
             """
         )
         print({

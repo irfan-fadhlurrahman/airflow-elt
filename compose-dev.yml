@@ -108,13 +108,15 @@ services:
 
   dashboard:
     container_name: dashboard
-    image: metabase/metabase:v0.47.3
+    build:
+      context: ./containers/metabase/
     restart: always
     mem_limit: 4gb
     cpu_count: ${CPU_COUNT}
     cpus: 0.7
     volumes:
       - ./containers/metabase/metabase-data:/metabase-data
+      - ./database/web-scraping.db:/metabase-data/web-scraping.db
     ports:
       - "3000:3000"
 
