@@ -1,4 +1,6 @@
 include .env
+fix-file-permissions:
+	sudo chown -R ${USERNAME} .
 
 create-file:
 	mkdir -p ./.github ./tests ./src ./utils ./database
@@ -8,8 +10,8 @@ create-file:
 	touch ./containers/airflow/Dockerfile
 	touch ./containers/airflow/requirements.txt
 
-create-docker-network:
-	docker network create ${DOCKER_NETWORK}
+docker-stats-json:
+	docker stats --format "{\"name\":\"{{ .Name }}\",\n\"memory\":{\"raw\":\"{{ .MemUsage }}\",\"percent\":\"{{ .MemPerc }}\"},\n\"cpu\":\"{{ .CPUPerc }}\"}\n"
 
 build:
 	docker compose --env-file .env -f compose-dev.yml build
@@ -27,7 +29,15 @@ down-remove-orphans:
 	docker compose --env-file .env -f compose-dev.yml down --remove-orphans
 
 bash:
-	docker compose --env-file .env -f compose-dev.yml exec airflow-scheduler bash
+	docker compose --env-file .env -f compose-dev.yml exec airflow-webserver bash
+
+temporary-jupyter: 
+	pip install jupyter jupyterlab ipywidgets; \
+	jupyter lab --no-browser --ip=0.0.0.0 \
+		--port=8877 \
+		--allow-root \
+		--NotebookApp.token=${JUPYTER_TOKEN} \
+		--NotebookApp.disable_check_xsrf=True
 
 attach:
 	tmux a -t ${TMUX_SESSION_NAME}
@@ -53,7 +63,6 @@ git-pull:
 
 git-push:
 	git push origin main
-
 
 unit-test:
 	pytest tests/unit/test_utils_common.py -s --disable-warnings

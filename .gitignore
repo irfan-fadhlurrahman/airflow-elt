@@ -1,5 +1,11 @@
+**/postgresql_data
 **/pgdata
 **/storage
 **/metabase-data
+**/__pycache__
 logs/*
 google-chrome-stable_current_amd64.deb
+__pycache__
+.pytest_cache
+.ipynb_checkpoints
+.wdm
